@@ -21,6 +21,18 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+TALKAPI_KEY = 'DZZRwRUUUs8Xahfj1TQh9sqKgm2JUeHm'
+def talkapi(text):
+    url = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
+    req = requests.post(url, {'apikey':TALKAPI_KEY,'query':text}, timeout=5)
+    data = req.json()
+
+    if data['status'] != 0:
+        return data['message']
+
+    msg = data['results'][0]['reply']
+    return msg
+
 #herokuへのデプロイが成功したかどうかを確認するためのコード
 @app.route("/")
 def hello_world():
@@ -44,25 +56,14 @@ def callback():
         abort(400)
     return 'OK'
 
-TALKAPI_KEY = 'DZZRwRUUUs8Xahfj1TQh9sqKgm2JUeHm'
-def talkapi(text):
-    url = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
-    req = requests.post(url, {'apikey':TALKAPI_KEY,'query':text}, timeout=5)
-    data = req.json()
-
-    if data['status'] != 0:
-        return data['message']
-
-    msg = data['results'][0]['reply']
-    return msg
-
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    aaa = talkapi(event.message.text)
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
+   push_text = event.message.text
+   msg = talkapi(push_text)
+   line_bot_api.reply_message(
+       event.reply_token,
+       TextSendMessage(text=msg))
 
 # ポート番号の設定
 if __name__ == "__main__":
