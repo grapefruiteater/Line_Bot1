@@ -20,7 +20,10 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-
+#herokuへのデプロイが成功したかどうかを確認するためのコード
+@app.route("/")
+def hello_world():
+    return "hello world!"
 
 
 #LINE DevelopersのWebhookにURLを指定してWebhookからURLにイベントが送られるようにする
