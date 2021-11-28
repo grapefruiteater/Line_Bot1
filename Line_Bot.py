@@ -1,15 +1,57 @@
-from linebot import LineBotApi
-from linebot.models import TextSendMessage    #テキストメッセージを送る時に使うモジュール
-from linebot.exceptions import LineBotApiError
 
-line_bot_api = LineBotApi('pxi09xpPSe/wloBZ0YHvjaJhHH+3t9QA1je/L0aqQfq0b0IE75cHhLUwaAhZKLnPjk0X/7rQqYUCHdcFX2m9kU/ZoqEyILX5mA3fOhMS5WcI/OyABSLREo1qVcGoKSbFopMEv1DQleRIbxpO7K99fQdB04t89/1O/w1cDnyilFU=')
+from flask import Flask, request, abort
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+)
+import os
 
-try:
-    # 該当botを友達追加している全員にメッセージを送る。
-    line_bot_api.broadcast(TextSendMessage(text = "test message from python to all member"))
+app = Flask(__name__)
 
-    # 特定の１ユーザーに送る時はこちら。その他にも、マルチキャスト、ナローキャストがある。
-    # line_bot_api.push_message('<to>', TextSendMessage(text='test message from python to one user'))
+#herokuの環境変数に設定された、LINE DevelopersのアクセストークンとChannelSecretを
+#取得するコード
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-except LineBotApiError as e:
-    print(e)
+#herokuへのデプロイが成功したかどうかを確認するためのコード
+@app.route("/")
+def hello_world():
+    return "hello world!"
+
+
+#LINE DevelopersのWebhookにURLを指定してWebhookからURLにイベントが送られるようにする
+@app.route("/callback", methods=['POST'])
+def callback():
+    # リクエストヘッダーから署名検証のための値を取得
+    signature = request.headers['X-Line-Signature']
+
+    # リクエストボディを取得
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+
+    # 署名を検証し、問題なければhandleに定義されている関数を呼ぶ
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
+    return 'OK'
+
+
+#以下でWebhookから送られてきたイベントをどのように処理するかを記述する
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
+
+# ポート番号の設定
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
