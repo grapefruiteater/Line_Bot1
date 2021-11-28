@@ -44,11 +44,22 @@ def callback():
         abort(400)
     return 'OK'
 
+TALKAPI_KEY = 'DZZRwRUUUs8Xahfj1TQh9sqKgm2JUeHm'
+def talkapi(text):
+    url = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
+    req = requests.post(url, {'apikey':TALKAPI_KEY,'query':text}, timeout=5)
+    data = req.json()
+
+    if data['status'] != 0:
+        return data['message']
+
+    msg = data['results'][0]['reply']
+    return msg
 
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    TALKAPI_KEY = 'your-api'
+    aaa = talkapi(event.message.text)
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text))
