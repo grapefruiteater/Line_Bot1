@@ -26,10 +26,8 @@ def talkapi(text):
     url = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
     req = requests.post(url, {'apikey':TALKAPI_KEY,'query':text}, timeout=5)
     data = req.json()
-
     if data['status'] != 0:
         return data['message']
-
     msg = data['results'][0]['reply']
     return msg
 
@@ -59,11 +57,9 @@ def callback():
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-   push_text = event.message.text
-   msg = talkapi(push_text)
-   line_bot_api.reply_message(
-       event.reply_token,
-       TextSendMessage(text=msg))
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
 
 # ポート番号の設定
 if __name__ == "__main__":
