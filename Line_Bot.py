@@ -67,12 +67,6 @@ def handle_message(event):
        event.reply_token,
        TextSendMessage(text=rep))
 
-@handler.add(FollowEvent)
-def handle_follow(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text='初めまして')
-    )
     
 # ポート番号の設定
 if __name__ == "__main__":
