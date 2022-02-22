@@ -64,9 +64,9 @@ def handle_message(event):
     send_message = event.message.text
     line_bot_api.reply_message(
        event.reply_token,
-       (ImageSendMessage(original_content_url="https://d4xawcq9u1fih.cloudfront.net/data8.png",
-                          preview_image_url="https://d4xawcq9u1fih.cloudfront.net/data8.png")),
-        )
+       ImageSendMessage(original_content_url="https://d4xawcq9u1fih.cloudfront.net/data8.png",
+                          preview_image_url="https://d4xawcq9u1fih.cloudfront.net/data8.png")
+       )
 
 
 @handler.add(FollowEvent)
