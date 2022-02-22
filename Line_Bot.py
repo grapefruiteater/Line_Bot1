@@ -61,17 +61,22 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
    push_text = event.message.text
-   msg = talkapi(push_text)
-   line_bot_api.reply_message(
-       event.reply_token,
-       TextSendMessage(text=msg))
+   if push_text=="席次表":
+       line_bot_api.reply_message(
+           event.reply_token,
+           TextSendMessage(text="席次表送るよー"))
+   else:
+       msg = talkapi(push_text)
+       line_bot_api.reply_message(
+           event.reply_token,
+           TextSendMessage(text=msg))
 
 #フォローされた場合の初めに表示するメッセージ
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='初めまして')
+        TextSendMessage(text='初めまして！敬太と希の結婚式Line Botです。')
     )
 
 #音声や画像、動画を保存する
