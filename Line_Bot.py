@@ -126,7 +126,7 @@ if __name__ == "__main__":
     )
     richMenuId = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
     
-    path = '/Line_Bot1/image/richmanu1.png'
+    path = 'image/richmanu1.png'
     with open(path, 'rb') as f:
         line_bot_api.set_rich_menu_image(richMenuId, "image/png", f)
     line_bot_api.set_default_rich_menu(richMenuId)
