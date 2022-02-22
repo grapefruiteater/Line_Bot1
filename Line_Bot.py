@@ -6,7 +6,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, FollowEvent
 )
 from linebot.models import RichMenu, RichMenuArea, RichMenuBounds, RichMenuSize,TemplateSendMessage,ButtonsTemplate,URIAction
 from linebot.models import CameraAction, CameraRollAction
@@ -59,7 +59,13 @@ def callback():
 
 
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
-
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+   tmp_text = event.message.text
+   rep = talkapi(tmp_text)
+   line_bot_api.reply_message(
+       event.reply_token,
+       TextSendMessage(text=rep))
 
 @handler.add(FollowEvent)
 def handle_follow(event):
