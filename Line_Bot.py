@@ -62,18 +62,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     send_message = event.message.text
-    rep = talkapi(tmp_text)
-    if send_message == "座席表":
-        line_bot_api.reply_message(
-           event.reply_token,
-           ((ImageSendMessage(original_content_url="https://d4xawcq9u1fih.cloudfront.net/data8.png",
-                              preview_image_url="https://d4xawcq9u1fih.cloudfront.net/data8.png")),
-            (TextSendMessage(text="席次表"))
-        ))
-    else:
-        line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=rep))
+    send_message == "座席表":
+    line_bot_api.reply_message(
+       event.reply_token,
+       (ImageSendMessage(original_content_url="https://d4xawcq9u1fih.cloudfront.net/data8.png",
+                          preview_image_url="https://d4xawcq9u1fih.cloudfront.net/data8.png")),
+        )
+
 
 @handler.add(FollowEvent)
 def handle_follow(event):
