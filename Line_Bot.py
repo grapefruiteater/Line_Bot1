@@ -86,10 +86,10 @@ def createRichmenu():
         richMenuId = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
 
         # upload an image for rich menu
-        path = 'image path for richmenu'
+        path = 'https://github.com/grapefruiteater/Line_Bot1/blob/main/image/richmanu1.png'
 
         with open(path, 'rb') as f:
-            line_bot_api.set_rich_menu_image(richMenuId, "image/jpeg", f)
+            line_bot_api.set_rich_menu_image(richMenuId, "image/png", f)
 
         # set the default rich menu
         line_bot_api.set_default_rich_menu(richMenuId)
