@@ -9,6 +9,9 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
+from linebot.models import RichMenu, RichMenuArea, RichMenuBounds, RichMenuSize,TemplateSendMessage,ButtonsTemplate,URIAction
+from linebot.models import CameraAction, CameraRollAction
+from linebot.models.actions import PostbackAction
 import os
 import requests
 
