@@ -62,7 +62,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     send_message = event.message.text
-    rep = talkapi(tmp_text)
+    rep = talkapi(send_message)
     if send_message == "座席表":
         line_bot_api.reply_message(
             event.reply_token,
