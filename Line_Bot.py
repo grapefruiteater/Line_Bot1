@@ -24,6 +24,16 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+TALKAPI_KEY = 'YOUR_API_KEY'
+def talkapi(text):
+    url = 'https://api.a3rt.recruit.co.jp/talk/v1/smalltalk'
+    req = requests.post(url, {'apikey':TALKAPI_KEY,'query':text}, timeout=5)
+    data = req.json()
+    if data['status'] != 0:
+        return data['message']
+    rep = data['results'][0]['reply']
+    return rep
+
 #herokuへのデプロイが成功したかどうかを確認するためのコード
 @app.route("/")
 def hello_world():
