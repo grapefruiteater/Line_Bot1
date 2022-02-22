@@ -59,20 +59,13 @@ def callback():
 
 
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-   tmp_text = event.message.text
-   rep = talkapi(tmp_text)
-   line_bot_api.reply_message(
-       event.reply_token,
-       TextSendMessage(text=rep))
+
 
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='Hello')
-    )
+        TextSendMessage(text='Hello'))
     
 # ポート番号の設定
 if __name__ == "__main__":
