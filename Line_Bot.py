@@ -72,7 +72,7 @@ def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text='Hello'))
-    
+
 # ポート番号の設定
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
