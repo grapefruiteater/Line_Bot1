@@ -71,16 +71,10 @@ def handle_message(event):
 def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='初めまして！敬太と希の結婚式Line Botです。')
+        TextSendMessage(text="hello")
     )
 
-#音声や画像、動画を保存する
-@handler.add(MessageEvent, message=(ImageMessage, AudioMessage))
-def handle_image_audio_message(event):
-    content = line_bot_api.get_message_content(event.message.id)
-    with open('file', 'w') as f:
-        for c in content.iter_content():
-            f.write(c)
+
 # ポート番号の設定
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
