@@ -6,7 +6,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent
+    MessageEvent, TextMessage, TextSendMessage, FollowEvent, TextSendMessage-Emoji, ImageSendMessage, VideoSendMessage, 
 )
 from linebot.models import RichMenu, RichMenuArea, RichMenuBounds, RichMenuSize,TemplateSendMessage,ButtonsTemplate,URIAction
 from linebot.models import CameraAction, CameraRollAction
@@ -65,7 +65,9 @@ def handle_message(event):
    rep = talkapi(tmp_text)
    line_bot_api.reply_message(
        event.reply_token,
-       TextSendMessage(text=rep))
+       ImageSendMessage(
+       original_content_url='https://photos.app.goo.gl/TqxSSuwsgTz2tRu79',
+       preview_image_url='https://photos.app.goo.gl/TqxSSuwsgTz2tRu79'))
 
 @handler.add(FollowEvent)
 def handle_follow(event):
@@ -73,6 +75,7 @@ def handle_follow(event):
         event.reply_token,
         TextSendMessage(text='Hello'))
 
+   
 # ポート番号の設定
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
