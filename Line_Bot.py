@@ -66,7 +66,7 @@ def handle_message(event):
        event.reply_token,
        ((ImageSendMessage(original_content_url="https://d4xawcq9u1fih.cloudfront.net/data8.png",
                           preview_image_url="https://d4xawcq9u1fih.cloudfront.net/data8.png")),
-         (TextSendMessage(text="（東京都政策企画局サイト様のデータ）"))
+         (TextSendMessage(text="Hello"))
        ))
 
 
