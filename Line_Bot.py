@@ -61,15 +61,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
    push_text = event.message.text
-   if push_text=="席次表":
-       line_bot_api.reply_message(
-           event.reply_token,
-           TextSendMessage(text="席次表送るよー"))
-   else:
-       msg = talkapi(push_text)
-       line_bot_api.reply_message(
-           event.reply_token,
-           TextSendMessage(text=msg))
+   msg = talkapi(push_text)
+   line_bot_api.reply_message(
+       event.reply_token,
+       TextSendMessage(text=msg))
 
 #フォローされた場合の初めに表示するメッセージ
 @handler.add(FollowEvent)
