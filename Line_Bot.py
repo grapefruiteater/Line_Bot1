@@ -63,11 +63,13 @@ def callback():
 def handle_message(event):
    tmp_text = event.message.text
    rep = talkapi(tmp_text)
-   line_bot_api.reply_message(
-       event.reply_token,
-       ImageSendMessage(
-       original_content_url='https://drive.google.com/file/d/1jz1zuxvyyJMUyPurxGeQ2-wdSYL4dX4B/view?usp=sharing',
-       preview_image_url='https://drive.google.com/file/d/1jz1zuxvyyJMUyPurxGeQ2-wdSYL4dX4B/view?usp=sharing'))
+   if send_message == "現在":
+       line_bot_api.reply_message(
+          event.reply_token,
+          ((ImageSendMessage(original_content_url="https://d4xawcq9u1fih.cloudfront.net/data8.png",
+                              preview_image_url="https://d4xawcq9u1fih.cloudfront.net/data8.png")),
+            (TextSendMessage(text="席次表"))
+        ))
 
 @handler.add(FollowEvent)
 def handle_follow(event):
