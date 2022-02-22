@@ -24,7 +24,7 @@ YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-TALKAPI_KEY = 'YOUR_API_KEY'
+TALKAPI_KEY = 'DZZRwRUUUs8Xahfj1TQh9sqKgm2JUeHm'
 def talkapi(text):
     url = 'https://api.a3rt.recruit.co.jp/talk/v1/smalltalk'
     req = requests.post(url, {'apikey':TALKAPI_KEY,'query':text}, timeout=5)
