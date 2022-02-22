@@ -66,8 +66,8 @@ def handle_message(event):
    line_bot_api.reply_message(
        event.reply_token,
        ImageSendMessage(
-       original_content_url='https://photos.app.goo.gl/TqxSSuwsgTz2tRu79',
-       preview_image_url='https://photos.app.goo.gl/TqxSSuwsgTz2tRu79'))
+       original_content_url='https://drive.google.com/file/d/1jz1zuxvyyJMUyPurxGeQ2-wdSYL4dX4B/view?usp=sharing',
+       preview_image_url='https://drive.google.com/file/d/1jz1zuxvyyJMUyPurxGeQ2-wdSYL4dX4B/view?usp=sharing'))
 
 @handler.add(FollowEvent)
 def handle_follow(event):
