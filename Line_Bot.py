@@ -6,7 +6,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent, TextSendMessage-Emoji, ImageSendMessage, VideoSendMessage, 
+    MessageEvent, TextMessage, TextSendMessage, FollowEvent, ImageSendMessage, VideoSendMessage
 )
 from linebot.models import RichMenu, RichMenuArea, RichMenuBounds, RichMenuSize,TemplateSendMessage,ButtonsTemplate,URIAction
 from linebot.models import CameraAction, CameraRollAction
