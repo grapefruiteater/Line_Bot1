@@ -6,9 +6,18 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent, ImageSendMessage, VideoSendMessage
+    MessageEvent, TextMessage, TextSendMessage,
+    SourceUser, SourceGroup, SourceRoom,
+    TemplateSendMessage, ConfirmTemplate, MessageTemplateAction,
+    ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URITemplateAction,
+    PostbackTemplateAction, DatetimePickerTemplateAction,
+    CarouselTemplate, CarouselColumn, PostbackEvent,
+    StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage, ImageSendMessage, VideoSendMessage
+    ImageMessage, VideoMessage, AudioMessage, FileMessage,
+    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent
 )
-from linebot.models import RichMenu, RichMenuArea, RichMenuBounds, RichMenuSize,TemplateSendMessage,ButtonsTemplate,URIAction
+
+from linebot.models import RichMenu, RichMenuArea, RichMenuBounds, RichMenuSize,URIAction
 from linebot.models import CameraAction, CameraRollAction
 from linebot.models.actions import PostbackAction
 
@@ -66,7 +75,9 @@ def callback():
 def handle_message(event):
     send_message = event.message.text
     rep = talkapi(send_message)
-    if send_message == "座席表":
+    if send_message == "座席表" and isinstance(event.source, SourceUser):
+        profile = line_bot_api.get_profile(event.source.user_id)
+        tmp = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
             ((ImageSendMessage(original_content_url="https://d4xawcq9u1fih.cloudfront.net/data8.png",
@@ -78,7 +89,7 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=rep))
 
-
+        
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
