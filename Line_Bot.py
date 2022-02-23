@@ -109,7 +109,10 @@ def handle_image_message(event):
     TextSendMessage(text="ok reply"))
     try: img_data = photo.get_photo_data(msg_id=event.message.id)
     except: raise ValueError('LINEサーバーから画像の取得に失敗')
-    
+    try: gphoto_access_token = photo.get_gphoto_access_token()
+    except: raise ValueError('Google Photoのアクセストークンを取得に失敗')
+    try: upload_token = photo.get_gphoto_upload_token(gphoto_access_token, img_data, display_name + '_' + str(counter+1))
+    except: raise ValueError('Google Photoへ画像をアップロードに失敗')
             
 @handler.add(FollowEvent)
 def handle_follow(event):
