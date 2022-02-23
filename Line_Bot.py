@@ -12,7 +12,7 @@ from linebot.models import (
     ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URITemplateAction,
     PostbackTemplateAction, DatetimePickerTemplateAction,
     CarouselTemplate, CarouselColumn, PostbackEvent,
-    StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage, ImageSendMessage, VideoSendMessage
+    StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage, ImageSendMessage, VideoSendMessage,
     ImageMessage, VideoMessage, AudioMessage, FileMessage,
     UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent
 )
