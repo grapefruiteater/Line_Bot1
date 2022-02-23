@@ -23,6 +23,7 @@ from linebot.models.actions import PostbackAction
 
 import os
 import requests
+from lib import photo
 
 app = Flask(__name__)
 
@@ -106,7 +107,10 @@ def handle_image_message(event):
     line_bot_api.reply_message(
     event.reply_token,
     TextSendMessage(text="ok reply"))
-        
+    try: img_data = photo.get_photo_data(msg_id=event.message.id)
+    except: raise ValueError('LINEサーバーから画像の取得に失敗')
+    
+            
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
