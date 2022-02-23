@@ -95,6 +95,19 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=rep))
 
+@handler.add(MessageEvent, message=ImageMessage)
+def handle_image_message(event):
+    send_message = event.message.text
+    rep = talkapi(send_message)
+    display_name = 'None'
+    if isinstance(event.source, SourceUser):
+        profile = line_bot_api.get_profile(event.source.user_id)
+        user_id = event.source.user_id
+        display_name = profile.display_name
+    else: print("user profile can't not use")
+    line_bot_api.reply_message(
+    event.reply_token,
+    TextSendMessage(text="ok reply"))
         
 @handler.add(FollowEvent)
 def handle_follow(event):
