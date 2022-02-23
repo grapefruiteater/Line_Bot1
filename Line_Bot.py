@@ -17,17 +17,17 @@ import requests
 
 app = Flask(__name__)
 
-#herokuの環境変数に設定された、LINE DevelopersのアクセストークンとChannelSecretを
+#herokuに設定された環境変数を呼び出す
 from lib.key import (
     YOUR_CHANNEL_ACCESS_TOKEN, YOUR_CHANNEL_SECRET, TALKAPI_KEY
 )
 
-YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
-YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
+#YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+#YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-TALKAPI_KEY = os.environ["TALKAPI_KEY"]
+#TALKAPI_KEY = os.environ["TALKAPI_KEY"]
 def talkapi(text):
     url = 'https://api.a3rt.recruit.co.jp/talk/v1/smalltalk'
     req = requests.post(url, {'apikey':TALKAPI_KEY,'query':text}, timeout=5)
