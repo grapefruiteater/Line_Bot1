@@ -75,6 +75,12 @@ def callback():
 def handle_message(event):
     send_message = event.message.text
     rep = talkapi(send_message)
+    display_name = 'None'
+    if isinstance(event.source, SourceUser):
+        profile = line_bot_api.get_profile(event.source.user_id)
+        user_id = event.source.user_id
+        display_name = profile.display_name
+    else: print("user profile can't not use")
     if send_message == "座席表" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
