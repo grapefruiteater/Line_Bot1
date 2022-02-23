@@ -1,4 +1,4 @@
-from flask import Flask, request, abort
+from flask import Flask, abort
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -23,6 +23,8 @@ from linebot.models.actions import PostbackAction
 
 import os
 import requests
+import urllib
+import urllib.request
 from lib import photo
 
 app = Flask(__name__)
