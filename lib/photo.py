@@ -1,7 +1,7 @@
 import urllib
 import requests, json
 from lib.key import (
-    channel_secret, channel_access_token, google_photo_album_id,
+    YOUR_CHANNEL_SECRET, YOUR_CHANNEL_ACCESS_TOKEN, google_photo_album_id,
     google_photo_client_id, google_photo_client_secret,
     google_photo_refresh_token
 )
@@ -11,7 +11,7 @@ def get_photo_data(msg_id):
     url = 'https://api.line.me/v2/bot/message/'  + msg_id + '/content'
     headers = {
         "Content-Type" : "application/json; charset=UTF-8",
-        'Authorization': 'Bearer ' + channel_access_token,
+        'Authorization': 'Bearer ' + YOUR_CHANNEL_ACCESS_TOKEN,
     }
     request = urllib.request.Request(url,
                                      method='GET',
