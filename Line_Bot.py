@@ -104,8 +104,8 @@ def handle_image_message(event):
         user_id = event.source.user_id
         display_name = profile.display_name
     else: print("user profile can't not use")
-    try: img_data = photo.get_photo_data(msg_id=event.message.id)
-    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got image file from Line server"))
+    img_data = photo.get_photo_data(msg_id=event.message.id)
+    #except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got image file from Line server"))
     try: gphoto_access_token = photo.get_gphoto_access_token()
     except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got access tokun from google server"))
     try: upload_token = photo.get_gphoto_upload_token(gphoto_access_token, img_data, display_name + '_' + str(counter+1))
