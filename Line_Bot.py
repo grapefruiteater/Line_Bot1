@@ -97,8 +97,6 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_image_message(event):
-    send_message = event.message.text
-    rep = talkapi(send_message)
     display_name = 'None'
     if isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
