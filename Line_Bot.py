@@ -77,12 +77,12 @@ def handle_message(event):
     rep = talkapi(send_message)
     if send_message == "座席表" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
-        tmp = profile.display_name
+        tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
             ((ImageSendMessage(original_content_url="https://d4xawcq9u1fih.cloudfront.net/data8.png",
                                preview_image_url="https://d4xawcq9u1fih.cloudfront.net/data8.png")),
-            (TextSendMessage(text="Please sit in your seat"))
+            (TextSendMessage(text="Please %s sit in your seat"%tmpname))
         ))
     else:
         line_bot_api.reply_message(
