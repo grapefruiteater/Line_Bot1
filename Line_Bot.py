@@ -104,15 +104,12 @@ def handle_image_message(event):
         user_id = event.source.user_id
         display_name = profile.display_name
     else: print("user profile can't not use")
-    line_bot_api.reply_message(
-    event.reply_token,
-    TextSendMessage(text="ok reply"))
     try: img_data = photo.get_photo_data(msg_id=event.message.id)
-    except: raise ValueError('LINEサーバーから画像の取得に失敗')
+    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got image file from Line server"))
     try: gphoto_access_token = photo.get_gphoto_access_token()
-    except: raise ValueError('Google Photoのアクセストークンを取得に失敗')
+    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got access tokun from google server"))
     try: upload_token = photo.get_gphoto_upload_token(gphoto_access_token, img_data, display_name + '_' + str(counter+1))
-    except: raise ValueError('Google Photoへ画像をアップロードに失敗')
+    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure upload image file to google photo"))
             
 @handler.add(FollowEvent)
 def handle_follow(event):
