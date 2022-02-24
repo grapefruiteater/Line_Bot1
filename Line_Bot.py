@@ -109,7 +109,7 @@ def handle_image_message(event):
     img_data = line_bot_api.get_message_content(event.message.id)
     src_img_path = "./image/sample.png"
     with open(src_img_path, "wb") as f:
-        for chunk in message_content.iter_content():
+        for chunk in img_data.iter_content():
             f.write(chunk)
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.id))
     #img_data = photo.get_photo_data(msg_id=event.message.id)
