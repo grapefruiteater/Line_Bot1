@@ -117,7 +117,7 @@ def handle_image_message(event):
         's3',
         aws_access_key_id=AWS_ACCESS_KEY_ID,
         aws_secret_access_key=AWS_ACCESS_KEY_ID,
-        region_name=AWS_ACCESS_KEY_ID
+        region_name=AWS_DEFAULT_REGION
     )
     Bucket = 'linebotphoto'
     Key = 'keyword'
