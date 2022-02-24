@@ -113,6 +113,10 @@ def handle_image_message(event):
     with open(src_img_path, "wb") as f:
         for chunk in message_content.iter_content():
             f.write(chunk)
+    client = boto3.client('s3')
+    Bucket = 'linebotphoto'
+    Key = 'keyword'
+    client.upload_file(src_img_path, Bucket, Key)
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.id))
     #img_data = photo.get_photo_data(msg_id=event.message.id)
     #except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got image file from Line server"))
