@@ -15,7 +15,9 @@ google_photo_client_id = os.environ.get('google_photo_client_id', None)
 google_photo_client_secret = os.environ.get('google_photo_client_secret', None)
 google_photo_album_id = os.environ.get('google_photo_album_id', None)
 google_photo_refresh_token = os.environ.get('google_photo_refresh_token', None)
-aws_s3_bucket = os.environ['AWS_BUCKET']
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', None)
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
+AWS_DEFAULT_REGION = os.environ.get('AWS_DEFAULT_REGION', None)
 
 if YOUR_CHANNEL_ACCESS_TOKEN is None:
     print('Specify YOUR_CHANNEL_ACCESS_TOKEN as environment variable.')
