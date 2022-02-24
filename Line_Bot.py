@@ -90,7 +90,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="Thank you %s!. Here is seat plan on reception."%tmpname)),
+            ((TextSendMessage(text="Thank you %s! Here is seat plan on reception."%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
     elif send_message == "メニュー表" and isinstance(event.source, SourceUser):
@@ -98,7 +98,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="Thank you %s!. Here is seat plan on reception."%tmpname)),
+            ((TextSendMessage(text="Thank you %s! Here is seat plan on reception."%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
     elif send_message == "Profile" and isinstance(event.source, SourceUser):
@@ -106,7 +106,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="Thank you %s!. Here is seat plan on reception."%tmpname)),
+            ((TextSendMessage(text="Thank you %s! Here is seat plan on reception."%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
     elif send_message == "Time Table" and isinstance(event.source, SourceUser):
@@ -114,7 +114,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="Thank you %s!. Here is seat plan on reception."%tmpname)),
+            ((TextSendMessage(text="Thank you %s! Here is seat plan on reception."%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
     else:
