@@ -39,4 +39,4 @@ if google_photo_album_id is None:
     sys.exit(1)
 if google_photo_refresh_token is None:
     print('Specify GOOGLE_PHOTO_REFRESH_TOKEN as environment variable.')
-    sys.exit(1)
+    sys.exit(1) 
