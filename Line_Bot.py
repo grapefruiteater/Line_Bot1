@@ -113,7 +113,12 @@ def handle_image_message(event):
     with open(src_img_path, "wb") as f:
         for chunk in message_content.iter_content():
             f.write(chunk)
-    client = boto3.client('s3')
+    client = boto3.client(
+        's3',
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_ACCESS_KEY_ID,
+        region_name=AWS_ACCESS_KEY_ID
+    )
     Bucket = 'linebotphoto'
     Key = 'keyword'
     client.upload_file(src_img_path, Bucket, Key)
