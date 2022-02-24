@@ -119,6 +119,8 @@ def handle_image_message(event):
     except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got access tokun from google server"))
     upload_token = photo.get_gphoto_upload_token(gphoto_access_token, img_data, display_name + '_' + str(1))
     #except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure upload image file to google photo"))
+    photo.upload_photo(gphoto_access_token, upload_token)
+    #except: raise ValueError('画像をGoogle Photoアルバムに追加に失敗')
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.id))
             
 @handler.add(FollowEvent)
