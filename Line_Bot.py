@@ -26,6 +26,7 @@ import requests
 import urllib
 import urllib.request
 from lib import photo
+import boto3
 
 app = Flask(__name__)
 
