@@ -120,7 +120,7 @@ def handle_image_message(event):
         region_name=AWS_DEFAULT_REGION
     )
     Bucket = 'linebotphoto'
-    Key = '%s_%s.png'%(event.message.id,event.source.user_id)
+    Key = '%s_%s.png'%(display_name,event.message.id)
     try:
         client.upload_file(src_img_path, Bucket, Key)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Correctly uploaded!!!'))
