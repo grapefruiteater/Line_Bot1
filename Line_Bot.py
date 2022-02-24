@@ -112,6 +112,7 @@ def handle_image_message(event):
         for chunk in img_data.iter_content():
             f.write(chunk)
     line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.id))
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.id))
     #img_data = photo.get_photo_data(msg_id=event.message.id)
     #except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got image file from Line server"))
     try: gphoto_access_token = photo.get_gphoto_access_token()
