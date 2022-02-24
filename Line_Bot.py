@@ -121,17 +121,10 @@ def handle_image_message(event):
     )
     Bucket = 'linebotphoto'
     Key = 'keyword'
-    client.upload_file(src_img_path, Bucket, Key)
-    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.id))
-    #img_data = photo.get_photo_data(msg_id=event.message.id)
-    #except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got image file from Line server"))
-    try: gphoto_access_token = photo.get_gphoto_access_token()
-    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure got access tokun from google server"))
-    upload_token = photo.get_gphoto_upload_token(gphoto_access_token, img_data, display_name + '_' + str(1))
-    #except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text="Failure upload image file to google photo"))
-    photo.upload_photo(gphoto_access_token, upload_token)
-    #except: raise ValueError('画像をGoogle Photoアルバムに追加に失敗')
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.id))
+    try:
+        client.upload_file(src_img_path, Bucket, Key)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Correctly uploaded!!!'))
+    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Failure uploaded!!!'))
             
 @handler.add(FollowEvent)
 def handle_follow(event):
