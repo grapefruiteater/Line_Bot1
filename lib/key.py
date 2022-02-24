@@ -39,4 +39,14 @@ if google_photo_album_id is None:
     sys.exit(1)
 if google_photo_refresh_token is None:
     print('Specify GOOGLE_PHOTO_REFRESH_TOKEN as environment variable.')
+    sys.exit(1)
+if AWS_ACCESS_KEY_ID is None:
+    print('Specify AWS_ACCESS_KEY_ID as environment variable.')
+    sys.exit(1)
+if AWS_SECRET_ACCESS_KEY is None:
+    print('Specify AWS_SECRET_ACCESS_KEY as environment variable.')
     sys.exit(1) 
+if AWS_DEFAULT_REGION is None:
+    print('Specify AWS_DEFAULT_REGION as environment variable.')
+    sys.exit(1)
+  
