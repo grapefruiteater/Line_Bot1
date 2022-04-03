@@ -100,7 +100,7 @@ def handle_message(event):
             event.reply_token,
             ((TextSendMessage(text="Thank you %s! Here is seat plan on reception."%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
-                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
+                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E7%B7%91+%E8%91%89%E3%81%AE%E3%83%9C%E3%83%BC%E3%83%80%E3%83%BC+%E7%B4%A0%E6%9C%B4%E3%81%AA%E8%8A%B1%E6%9F%84+%E7%B5%90%E5%A9%9A%E5%BC%8F%E5%B8%AD%E6%AC%A1%E8%A1%A8.png"))))
     elif send_message == "Profile" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
@@ -109,14 +109,14 @@ def handle_message(event):
             ((TextSendMessage(text="Thank you %s! Here is seat plan on reception."%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
-    elif send_message == "Time Table" and isinstance(event.source, SourceUser):
+    elif send_message == "招待状" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
             ((TextSendMessage(text="Thank you %s! Here is seat plan on reception."%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
-                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
+                               preview_image_url="https://wedding-invi.jp/invitation/157639/0f92986ddf7"))))
     else:
         line_bot_api.reply_message(
         event.reply_token,
