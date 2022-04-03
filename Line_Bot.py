@@ -97,7 +97,7 @@ def handle_message(event):
     if send_message in list_seki and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
-        await line_bot_api.reply_message(
+        line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text="現在、出欠確認中です。"))
             )
