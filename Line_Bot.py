@@ -30,8 +30,7 @@ import boto3
 import json
 
 #from fastapi import FastAPI
-
-app = FastAPI()
+#app = FastAPI()
 
 app = Flask(__name__)
 
