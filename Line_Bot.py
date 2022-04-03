@@ -102,9 +102,10 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="%sさん! \n当日のメニュー表です。"%tmpname)),
-                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E7%B7%91+%E8%91%89%E3%81%AE%E3%83%9C%E3%83%BC%E3%83%80%E3%83%BC+%E7%B4%A0%E6%9C%B4%E3%81%AA%E8%8A%B1%E6%9F%84+%E7%B5%90%E5%A9%9A%E5%BC%8F%E5%B8%AD%E6%AC%A1%E8%A1%A8.png",
-                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E7%B7%91+%E8%91%89%E3%81%AE%E3%83%9C%E3%83%BC%E3%83%80%E3%83%BC+%E7%B4%A0%E6%9C%B4%E3%81%AA%E8%8A%B1%E6%9F%84+%E7%B5%90%E5%A9%9A%E5%BC%8F%E5%B8%AD%E6%AC%A1%E8%A1%A8.png"))))
+            #((TextSendMessage(text="%sさん! \n当日のメニュー表です。"%tmpname)),
+            ((TextSendMessage(text="現在、打ち合わせ中です。")),
+                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E8%A1%A8.png",
+                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E8%A1%A8.png"))))
     elif send_message == "Profile" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
@@ -124,7 +125,7 @@ def handle_message(event):
     elif send_message == "写真・動画共有" and isinstance(event.source, SourceUser):
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\n\nレポジトリは以下のURLから参照できます。\nhttps://bit.ly/3x1OWK4"))
+            (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\n\nレポジトリは以下のURLから参照できます。\n"))
             )
     else:
         line_bot_api.reply_message(
