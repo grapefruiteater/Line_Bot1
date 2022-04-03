@@ -29,7 +29,11 @@ from lib import photo
 import boto3
 import json
 
-app = Flask(__name__)
+from fastapi import FastAPI
+
+app = FastAPI()
+
+#app = Flask(__name__)
 
 #herokuに設定された環境変数を呼び出す
 from lib.key import (
@@ -55,7 +59,6 @@ def talkapi(text):
 @app.route("/")
 def hello_world():
     return "hello world!"
-
 
 #LINE DevelopersのWebhookにURLを指定してWebhookからURLにイベントが送られるようにする
 @app.route("/callback", methods=['POST'])
