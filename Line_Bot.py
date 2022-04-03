@@ -29,10 +29,10 @@ from lib import photo
 import boto3
 import json
 
-from fastapi import FastAPI, Request, BackgroundTasks
-from aiolinebot import AioLineBotApi
-app = FastAPI()
-#app = Flask(__name__)
+#from fastapi import FastAPI, Request, BackgroundTasks
+#from aiolinebot import AioLineBotApi
+#app = FastAPI()
+app = Flask(__name__)
 
 #herokuに設定された環境変数を呼び出す
 from lib.key import (
@@ -41,11 +41,11 @@ from lib.key import (
 
 #YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 #YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
-#line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-line_bot_api = AioLineBotApi(channel_access_token=os.environ.get("YOUR_CHANNEL_ACCESS_TOKEN"))
-parser = WebhookParser(channel_secret=os.environ.get("YOUR_CHANNEL_SECRET"))
+#line_bot_api = AioLineBotApi(channel_access_token=os.environ.get("YOUR_CHANNEL_ACCESS_TOKEN"))
+#parser = WebhookParser(channel_secret=os.environ.get("YOUR_CHANNEL_SECRET"))
 
 #TALKAPI_KEY = os.environ["TALKAPI_KEY"]
 def talkapi(text):
@@ -83,7 +83,7 @@ def callback():
 
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 @handler.add(MessageEvent, message=TextMessage)
-async def handle_message(event):
+def handle_message(event):
     send_message = event.message.text
     rep = talkapi(send_message)
     display_name = 'None'
