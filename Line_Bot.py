@@ -155,7 +155,7 @@ def handle_image_message(event):
 def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='Hello'))
+        TextSendMessage(text='登録して頂きありがとうございます！\nこれは敬太と希の結婚式のLINE公式アカウントです。\n下記のメニューから会場場所や座席表、お写真や動画の共有ができます。\nぜひご活用頂ければと思います。'))
 
    
 # ポート番号の設定
