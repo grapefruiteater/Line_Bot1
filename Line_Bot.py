@@ -124,7 +124,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text="写真・動画共有はチャットに投げて頂ければ自動でレポジトリに追加されます。\nレポジトリは以下のURLから参照できます。\n\nhttps://bit.ly/3x1OWK4"))
+            (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\nレポジトリは以下のURLから参照できます。\n\nhttps://bit.ly/3x1OWK4"))
             )
     else:
         line_bot_api.reply_message(
@@ -157,7 +157,34 @@ def handle_image_message(event):
         client.upload_file(src_img_path, Bucket, Key)
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Correctly uploaded!!!'))
     except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Failure uploaded!!!'))
-            
+
+@handler.add(MessageEvent, message=VideoMessage)
+def handle_image_message(event):
+    display_name = 'None'
+    if isinstance(event.source, SourceUser):
+        profile = line_bot_api.get_profile(event.source.user_id)
+        user_id = event.source.user_id
+        display_name = profile.display_name
+    else: print("user profile can't not use")
+    message_content = line_bot_api.get_message_content(event.message.id)
+    Video_data = line_bot_api.get_message_content(event.message.id).iter_content()
+    src_img_path = "./image/sample.mp4"
+    with open(src_img_path, "wb") as f:
+        for chunk in message_content.iter_content():
+            f.write(chunk)
+    client = boto3.client(
+        's3',
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        region_name=AWS_DEFAULT_REGION
+    )
+    Bucket = 'linebotphoto'
+    Key = '%s_%s.mp4'%(display_name,event.message.id)
+    try:
+        client.upload_file(src_img_path, Bucket, Key)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Correctly uploaded!!!'))
+    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Failure uploaded!!!'))        
+
 @handler.add(FollowEvent)
 def handle_follow(event):
     line_bot_api.reply_message(
