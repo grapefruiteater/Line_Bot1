@@ -155,8 +155,8 @@ def handle_image_message(event):
     Key = '%s_%s.png'%(display_name,event.message.id)
     try:
         client.upload_file(src_img_path, Bucket, Key)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Correctly uploaded!!!'))
-    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Failure uploaded!!!'))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Correctly uploaded'))
+    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Failure uploaded'))
 
 @handler.add(MessageEvent, message=VideoMessage)
 def handle_image_message(event):
@@ -182,8 +182,8 @@ def handle_image_message(event):
     Key = '%s_%s.mp4'%(display_name,event.message.id)
     try:
         client.upload_file(src_img_path, Bucket, Key)
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Correctly uploaded!!!'))
-    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Failure uploaded!!!'))        
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Correctly uploaded'))
+    except: line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Failure uploaded'))        
 
 @handler.add(FollowEvent)
 def handle_follow(event):
