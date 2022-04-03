@@ -29,11 +29,11 @@ from lib import photo
 import boto3
 import json
 
-from fastapi import FastAPI
+#from fastapi import FastAPI
 
 app = FastAPI()
 
-#app = Flask(__name__)
+app = Flask(__name__)
 
 #herokuに設定された環境変数を呼び出す
 from lib.key import (
