@@ -120,8 +120,6 @@ def handle_message(event):
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://wedding-invi.jp/invitation/157639/0f92986ddf7"))))
     elif send_message == "写真・動画共有" and isinstance(event.source, SourceUser):
-        profile = line_bot_api.get_profile(event.source.user_id)
-        tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\n\nレポジトリは以下のURLから参照できます。\nhttps://bit.ly/3x1OWK4"))
