@@ -124,7 +124,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\nレポジトリは以下のURLから参照できます。\n\nhttps://bit.ly/3x1OWK4"))
+            (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\n\nレポジトリは以下のURLから参照できます。\nhttps://bit.ly/3x1OWK4"))
             )
     else:
         line_bot_api.reply_message(
