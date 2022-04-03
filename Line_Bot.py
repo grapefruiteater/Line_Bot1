@@ -85,13 +85,14 @@ def handle_message(event):
         user_id = event.source.user_id
         display_name = profile.display_name
     else: print("user profile can't not use")
+    list_seki = {"seat":"1", "座席":"1", "席次":"1", "座席表":"1", "席次表":"1", "座席表を見せて":"1", "席次表を見せて":"1", "座席表をみせて":"1", "席次表をみせて":"1", "座席表みせて":"1", "席次表みせて":"1"}
     list_menu = {"menu":"1", "メニュー":"1", "メニュー表":"1", "メニューを見せて":"1", "メニュー表を見せて":"1", "メニュー表をみせて":"1", "メニューをみせて":"1", "メニューみせて":"1", "メニュー表みせて":"1"}
-    if send_message == "座席表" and isinstance(event.source, SourceUser):
+    if send_message in list_ and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="%s!"%tmpname)),
+            ((TextSendMessage(text="%s! \n当日の席次表です。"%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
     elif send_message in list_menu and isinstance(event.source, SourceUser):
@@ -99,7 +100,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="%s! \n 当日のメニュー表です。"%tmpname)),
+            ((TextSendMessage(text="%s! \n当日のメニュー表です。"%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E7%B7%91+%E8%91%89%E3%81%AE%E3%83%9C%E3%83%BC%E3%83%80%E3%83%BC+%E7%B4%A0%E6%9C%B4%E3%81%AA%E8%8A%B1%E6%9F%84+%E7%B5%90%E5%A9%9A%E5%BC%8F%E5%B8%AD%E6%AC%A1%E8%A1%A8.png",
                                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E7%B7%91+%E8%91%89%E3%81%AE%E3%83%9C%E3%83%BC%E3%83%80%E3%83%BC+%E7%B4%A0%E6%9C%B4%E3%81%AA%E8%8A%B1%E6%9F%84+%E7%B5%90%E5%A9%9A%E5%BC%8F%E5%B8%AD%E6%AC%A1%E8%A1%A8.png"))))
     elif send_message == "Profile" and isinstance(event.source, SourceUser):
@@ -107,7 +108,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="%s!."%tmpname)),
+            ((TextSendMessage(text="%s! \n敬太と希のプロフィールです。"%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
     elif send_message == "招待状" and isinstance(event.source, SourceUser):
@@ -115,7 +116,7 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="%s!."%tmpname)),
+            ((TextSendMessage(text="%s! \n招待状です。"%tmpname)),
                 (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
                                preview_image_url="https://wedding-invi.jp/invitation/157639/0f92986ddf7"))))
     else:
