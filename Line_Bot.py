@@ -29,10 +29,10 @@ from lib import photo
 import boto3
 import json
 
-#from fastapi import FastAPI
-#app = FastAPI()
-
-app = Flask(__name__)
+from fastapi import FastAPI, Request, BackgroundTasks
+from aiolinebot import AioLineBotApi
+app = FastAPI()
+#app = Flask(__name__)
 
 #herokuに設定された環境変数を呼び出す
 from lib.key import (
@@ -41,8 +41,11 @@ from lib.key import (
 
 #YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 #YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
-line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+#line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
+#handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+
+line_bot_api = AioLineBotApi(channel_access_token=os.environ.get("YOUR_CHANNEL_ACCESS_TOKEN"))
+parser = WebhookParser(channel_secret=os.environ.get("YOUR_CHANNEL_SECRET"))
 
 #TALKAPI_KEY = os.environ["TALKAPI_KEY"]
 def talkapi(text):
@@ -60,6 +63,7 @@ def hello_world():
     return "hello world!"
 
 #LINE DevelopersのWebhookにURLを指定してWebhookからURLにイベントが送られるようにする
+"""
 @app.route("/callback", methods=['POST'])
 def callback():
     # リクエストヘッダーから署名検証のための値を取得
@@ -75,11 +79,22 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
+"""
 
+@app.post("/callback")
+async def callback(request: Request, background_tasks: BackgroundTasks):
+    events = parser.parse(
+        (await request.body()).decode("utf-8"),
+        request.headers.get("X-Line-Signature", "")
+    )
+
+    background_tasks.add_task(handle_events, events=events)
+
+    return "ok"
 
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 @handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
+async def handle_message(event):
     send_message = event.message.text
     rep = talkapi(send_message)
     display_name = 'None'
@@ -93,7 +108,7 @@ def handle_message(event):
     if send_message in list_seki and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
-        line_bot_api.reply_message(
+        await line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text="現在、出欠確認中です。"))
             )
