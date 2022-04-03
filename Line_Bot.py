@@ -42,7 +42,7 @@ from lib.key import (
 #YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 #YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 #line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
-#handler = WebhookHandler(YOUR_CHANNEL_SECRET)
+handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 line_bot_api = AioLineBotApi(channel_access_token=os.environ.get("YOUR_CHANNEL_ACCESS_TOKEN"))
 parser = WebhookParser(channel_secret=os.environ.get("YOUR_CHANNEL_SECRET"))
@@ -63,7 +63,7 @@ def hello_world():
     return "hello world!"
 
 #LINE DevelopersのWebhookにURLを指定してWebhookからURLにイベントが送られるようにする
-"""
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # リクエストヘッダーから署名検証のための値を取得
@@ -79,18 +79,7 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
-"""
 
-@app.post("/callback")
-async def callback(request: Request, background_tasks: BackgroundTasks):
-    events = parser.parse(
-        (await request.body()).decode("utf-8"),
-        request.headers.get("X-Line-Signature", "")
-    )
-
-    background_tasks.add_task(handle_events, events=events)
-
-    return "ok"
 
 #以下でWebhookから送られてきたイベントをどのように処理するかを記述する
 @handler.add(MessageEvent, message=TextMessage)
