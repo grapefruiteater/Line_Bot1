@@ -124,9 +124,8 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="写真・動画共有はチャットに投げてもらえれば自動でレポジトリに追加されます。\nレポジトリは以下のURLから参照できます。\nhttps://maindepository.s3.ap-northeast-1.amazonaws.com/wedding/%E7%B7%91+%E8%91%89%E3%81%AE%E3%83%9C%E3%83%BC%E3%83%80%E3%83%BC+%E7%B4%A0%E6%9C%B4%E3%81%AA%E8%8A%B1%E6%9F%84+%E7%B5%90%E5%A9%9A%E5%BC%8F%E5%B8%AD%E6%AC%A1%E8%A1%A8.png"%tmpname)),
-                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
-                               preview_image_url="https://wedding-invi.jp/invitation/157639/0f92986ddf7"))))
+            (TextSendMessage(text="写真・動画共有はチャットに投げてもらえれば自動でレポジトリに追加されます。\nレポジトリは以下のURLから参照できます。\nhttps://maindepository.s3.ap-northeast-1.amazonaws.com/wedding/%E7%B7%91+%E8%91%89%E3%81%AE%E3%83%9C%E3%83%BC%E3%83%80%E3%83%BC+%E7%B4%A0%E6%9C%B4%E3%81%AA%E8%8A%B1%E6%9F%84+%E7%B5%90%E5%A9%9A%E5%BC%8F%E5%B8%AD%E6%AC%A1%E8%A1%A8.png"%tmpname))
+            )
     else:
         line_bot_api.reply_message(
         event.reply_token,
