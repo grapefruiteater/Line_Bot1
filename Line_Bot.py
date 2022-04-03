@@ -127,6 +127,99 @@ def handle_message(event):
             event.reply_token,
             (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\n\nレポジトリは以下のURLから参照できます。\n"))
             )
+    elif send_message == "よくある質問" and isinstance(event.source, SourceUser):
+        bubble_string = """
+            {
+              "type": "bubble",
+              "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "よくある質問",
+                    "weight": "bold",
+                    "align": "center",
+                    "color": "#ffffff"
+                  },
+                  {
+                    "type": "text",
+                    "text": "お困りの状況に該当するものをお選びください。",
+                    "wrap": true,
+                    "color": "#ffffff"
+                  }
+                ],
+                "backgroundColor": "#00CC62"
+              },
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "何時に行けばいいですか？",
+                        "align": "center",
+                        "color": "#42659a"
+                      }
+                    ],
+                    "action": {
+                      "type": "postback",
+                      "label": "question",
+                      "data": "action=question&id=1",
+                      "displayText": "#何時に行けばいいですか？"
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "服装どうしたらいいですか？",
+                        "color": "#42659a",
+                        "align": "center"
+                      }
+                    ],
+                    "margin": "12px",
+                    "action": {
+                      "type": "postback",
+                      "label": "question",
+                      "data": "action=question&id=2",
+                      "displayText": "#服装どうしたらいいですか？"
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "ご祝儀はどうしたらいいですか？",
+                        "align": "center",
+                        "color": "#42659a"
+                      }
+                    ],
+                    "margin": "12px",
+                    "action": {
+                      "type": "postback",
+                      "label": "question",
+                      "data": "action=question&id=3",
+                      "displayText": "#ご祝儀はどうしたらいいですか？"
+                    }
+                  }
+                ]
+              }
+            }
+        """
+        message = FlexSendMessage(alt_text="よくある質問", contents=json.loads(bubble_string))
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
     else:
         line_bot_api.reply_message(
         event.reply_token,
