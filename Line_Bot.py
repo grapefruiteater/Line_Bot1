@@ -92,9 +92,11 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            ((TextSendMessage(text="%sさん! \n当日の席次表です。"%tmpname)),
-                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
-                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
+            (TextSendMessage(text="現在、出欠確認中です。"))
+            )
+            #((TextSendMessage(text="%sさん! \n当日の席次表です。"%tmpname)),
+            #    (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
+            #                   preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
     elif send_message in list_menu and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
