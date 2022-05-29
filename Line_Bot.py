@@ -99,35 +99,32 @@ def handle_message(event):
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text="現在、出欠確認中です。"))
-            )
-            #((TextSendMessage(text="%sさん! \n当日の席次表です。"%tmpname)),
-            #    (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
-            #                   preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
+            ((TextSendMessage(text="%sさん! \n当日の席次表です。"%tmpname)),
+                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/seat_plan.pdf",
+                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/seat_plan.pdf"))))
     elif send_message in list_menu and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
-            #((TextSendMessage(text="%sさん! \n当日のメニュー表です。"%tmpname)),
-            ((TextSendMessage(text="現在、打ち合わせ中です。")),
-                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E8%A1%A8.png",
-                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E8%A1%A8.png"))))
+            ((TextSendMessage(text="%sさん! \n当日のメニュー表です。"%tmpname)),
+                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/Wedding+Menu.jpg",
+                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/Wedding+Menu.jpg"))))
     elif send_message == "Profile" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
             ((TextSendMessage(text="%sさん! \n敬太と希のプロフィールです。"%tmpname)),
-                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
-                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG"))))
+                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/Profile.jpg",
+                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/Profile.jpg"))))
     elif send_message == "招待状" and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
         line_bot_api.reply_message(
             event.reply_token,
             ((TextSendMessage(text="%sさん! \n招待状です。"%tmpname)),
-                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/table1.PNG",
+                (ImageSendMessage(original_content_url="https://wedding-invi.jp/invitation/157639/0f92986ddf7",
                                preview_image_url="https://wedding-invi.jp/invitation/157639/0f92986ddf7"))))
     elif send_message == "写真・動画共有" and isinstance(event.source, SourceUser):
         line_bot_api.reply_message(
