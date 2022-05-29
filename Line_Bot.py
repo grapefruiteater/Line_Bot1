@@ -244,6 +244,24 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=rep))
 
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    if event.postback.data == 'action=question&id=1':
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='9:30~10:30の間にラグナヴェール広島へお越しください。会場へのアクセスは結婚式公式アカウントのメニュー右下の"会場場所・アクセス"からGoogle Mapが確認できます。'))
+        )
+    elif event.postback.data == 'action=question&id=2':
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='基本的には自由です。男性はスーツ、女性はドレスを召してお越し頂けると幸いです。'))
+        )
+    elif event.postback.data == 'action=question&id=3':
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='当日、受付にてお渡し頂ければ幸いです。'))
+        )        
+        
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_image_message(event):
     display_name = 'None'
