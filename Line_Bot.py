@@ -100,8 +100,8 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             ((TextSendMessage(text="%sさん! \n当日の席次表です。"%tmpname)),
-                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/seat_plan.pdf",
-                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/seat_plan.pdf"))))
+                (ImageSendMessage(original_content_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/seat_plan.jpg",
+                               preview_image_url="https://maindepository.s3.ap-northeast-1.amazonaws.com/seat_plan.jpg"))))
     elif send_message in list_menu and isinstance(event.source, SourceUser):
         profile = line_bot_api.get_profile(event.source.user_id)
         tmpname = profile.display_name
