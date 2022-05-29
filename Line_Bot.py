@@ -239,6 +239,10 @@ def handle_message(event):
             event.reply_token,
             message
         )
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='9:30~10:30の間にラグナヴェール広島へお越しください。会場へのアクセスは結婚式公式アカウントのメニュー右下の"会場場所・アクセス"からGoogle Mapが確認できます。'))
+        )
     else:
         line_bot_api.reply_message(
         event.reply_token,
