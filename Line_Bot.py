@@ -237,8 +237,7 @@ def handle_message(event):
         message = FlexSendMessage(alt_text="よくある質問", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
             event.reply_token,
-            ((message,
-                (TextSendMessage(text='9:30~10:30の間にラグナヴェール広島へお越しください。会場へのアクセスは結婚式公式アカウントのメニュー右下の"会場場所・アクセス"からGoogle Mapが確認できます。'))))
+            message
         )
     else:
         line_bot_api.reply_message(
