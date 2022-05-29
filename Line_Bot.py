@@ -134,7 +134,7 @@ def handle_message(event):
     elif send_message == "何時に行けばいいですか？" and isinstance(event.source, SourceUser):
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text='9:30~10:30の間にラグナヴェール広島へお越しください。会場へのアクセスは結婚式公式アカウントのメニュー右下の"会場場所・アクセスからGoogle Mapが確認できます。'))
+            (TextSendMessage(text='9:30~10:30の間にラグナヴェール広島へお越しください。会場へのアクセスは結婚式公式アカウントのメニュー右下の"会場場所・アクセス"からGoogle Mapが確認できます。'))
             )
     elif send_message == "服装はどうしたらいいですか？" and isinstance(event.source, SourceUser):
         line_bot_api.reply_message(
