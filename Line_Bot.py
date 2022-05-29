@@ -131,17 +131,17 @@ def handle_message(event):
             event.reply_token,
             (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\n\nレポジトリは以下のURLから参照できます。\n"))
             )
-    elif send_message == "何時に行けばいいですか？" and isinstance(event.source, SourceUser):
+    elif send_message == "何時に行けばいいですか？":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='9:30~10:30の間にラグナヴェール広島へお越しください。会場へのアクセスは結婚式公式アカウントのメニュー右下の"会場場所・アクセス"からGoogle Mapが確認できます。'))
             )
-    elif send_message == "服装はどうしたらいいですか？" and isinstance(event.source, SourceUser):
+    elif send_message == "服装はどうしたらいいですか？":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='基本的には自由です。男性はスーツ、女性はドレスを召してお越し頂けると幸いです。'))
             )
-    elif send_message == "ご祝儀はどうしたらいいですか？" and isinstance(event.source, SourceUser):
+    elif send_message == "ご祝儀はどうしたらいいですか？":
         line_bot_api.reply_message(
             event.reply_token,
             (TextSendMessage(text='当日、受付にてお渡し頂ければ幸いです。'))
