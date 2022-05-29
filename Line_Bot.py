@@ -131,6 +131,21 @@ def handle_message(event):
             event.reply_token,
             (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。\n\nレポジトリは以下のURLから参照できます。\n"))
             )
+    elif send_message == "何時に行けばいいですか？" and isinstance(event.source, SourceUser):
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='9:30~10:30の間にラグナヴェール広島へお越しください。会場へのアクセスは結婚式公式アカウントのメニュー右下の"会場場所・アクセスからGoogle Mapが確認できます。'))
+            )
+    elif send_message == "服装はどうしたらいいですか？" and isinstance(event.source, SourceUser):
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='基本的には自由です。男性はスーツ、女性はドレスを召してお越し頂けると幸いです。'))
+            )
+    elif send_message == "ご祝儀はどうしたらいいですか？" and isinstance(event.source, SourceUser):
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='当日、受付にてお渡し頂ければ幸いです。'))
+            )
     elif send_message == "よくある質問" and isinstance(event.source, SourceUser):
         bubble_string = """
             {
@@ -174,7 +189,7 @@ def handle_message(event):
                       "type": "postback",
                       "label": "question",
                       "data": "action=question&id=1",
-                      "displayText": "#何時に行けばいいですか？"
+                      "displayText": "何時に行けばいいですか？"
                     }
                   },
                   {
@@ -183,7 +198,7 @@ def handle_message(event):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "服装どうしたらいいですか？",
+                        "text": "服装はどうしたらいいですか？",
                         "color": "#42659a",
                         "align": "center"
                       }
@@ -193,7 +208,7 @@ def handle_message(event):
                       "type": "postback",
                       "label": "question",
                       "data": "action=question&id=2",
-                      "displayText": "#服装どうしたらいいですか？"
+                      "displayText": "服装はどうしたらいいですか？"
                     }
                   },
                   {
@@ -212,7 +227,7 @@ def handle_message(event):
                       "type": "postback",
                       "label": "question",
                       "data": "action=question&id=3",
-                      "displayText": "#ご祝儀はどうしたらいいですか？"
+                      "displayText": "ご祝儀はどうしたらいいですか？"
                     }
                   }
                 ]
