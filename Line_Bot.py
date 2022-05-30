@@ -129,7 +129,7 @@ def handle_message(event):
     elif send_message == "写真・動画共有" and isinstance(event.source, SourceUser):
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。")) #\n\nレポジトリは以下のURLから参照できます。\n"))
+            (TextSendMessage(text="写真・動画共有はここのチャットに送って頂ければ自動でレポジトリに追加されます。")) 
             )
     elif send_message == "何時に行けばいいですか？":
         line_bot_api.reply_message(
