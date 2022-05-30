@@ -273,7 +273,7 @@ def handle_postback(event):
     elif event.postback.data == 'action=question&id=2':
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text='会場であるラグナヴェール広島の左隣に立体駐車場があります。その他の駐車場にお停めいただいても構いません。駐車場代金はお車代としてお渡しさせていただきます。'))
+            (TextSendMessage(text='会場には駐車場はございません。会場の左隣に立体駐車場があります。その他の駐車場にお停めいただければと思います。'))
         )
     elif event.postback.data == 'action=question&id=3':
         line_bot_api.reply_message(
