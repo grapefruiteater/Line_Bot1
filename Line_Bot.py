@@ -198,7 +198,7 @@ def handle_message(event):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "服装はどうしたらいいですか？",
+                        "text": "駐車場はありますか？",
                         "color": "#42659a",
                         "align": "center"
                       }
@@ -208,6 +208,25 @@ def handle_message(event):
                       "type": "postback",
                       "label": "question",
                       "data": "action=question&id=2",
+                      "displayText": "駐車場はありますか？"
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "服装はどうしたらいいですか？",
+                        "color": "#42659a",
+                        "align": "center"
+                      }
+                    ],
+                    "margin": "12px",
+                    "action": {
+                      "type": "postback",
+                      "label": "question",
+                      "data": "action=question&id=3",
                       "displayText": "服装はどうしたらいいですか？"
                     }
                   },
@@ -226,7 +245,7 @@ def handle_message(event):
                     "action": {
                       "type": "postback",
                       "label": "question",
-                      "data": "action=question&id=3",
+                      "data": "action=question&id=4",
                       "displayText": "ご祝儀はどうしたらいいですか？"
                     }
                   }
@@ -254,12 +273,17 @@ def handle_postback(event):
     elif event.postback.data == 'action=question&id=2':
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text='基本的には自由です。男性はスーツ、女性はドレスを召してお越し頂けると幸いです。'))
+            (TextSendMessage(text='会場であるラグナヴェール広島の左隣に立体駐車場があります。その他の駐車場にお停めいただいても構いません。駐車場代金はお車代としてお渡しさせていただきます。'))
         )
     elif event.postback.data == 'action=question&id=3':
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text='当日、受付にてお渡し頂ければ幸いです。'))
+            (TextSendMessage(text='基本的には自由です。男性はスーツ、女性はドレスを召してお越し頂けると幸いです。'))
+        )
+    elif event.postback.data == 'action=question&id=4':
+        line_bot_api.reply_message(
+            event.reply_token,
+            (TextSendMessage(text='大変お手数ですがご祝儀袋をご用意頂き、当日会場の受付にて担当者にお渡しください。以下に参考としてご祝儀袋のリンクを張っておりますので、良ければご利用ください。\nhttps://amzn.to/36rzbBh'))
         )        
         
 @handler.add(MessageEvent, message=ImageMessage)
