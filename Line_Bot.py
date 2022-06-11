@@ -273,7 +273,7 @@ def handle_postback(event):
     elif event.postback.data == 'action=question&id=2':
         line_bot_api.reply_message(
             event.reply_token,
-            (TextSendMessage(text='会場には無料駐車場はございません。会場の左隣に有料の立体駐車場があります。その他のお近くの有料駐車場にお停めいただければと思います。'))
+            (TextSendMessage(text='会場には無料駐車場はございません。会場の左隣に有料の立体駐車場があります。その他でも、お近くの有料駐車場にお停めいただければ大丈夫です。'))
         )
     elif event.postback.data == 'action=question&id=3':
         line_bot_api.reply_message(
